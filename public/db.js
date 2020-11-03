@@ -30,3 +30,16 @@ request.onsuccess = function (event) {
       pendingStore.add({ name: record.name, value: record.value, date: record.date });
     }
     
+    function checkDatabase() {
+      // open a transaction on your pending db
+      const transaction = db.transaction(["pending"], "readwrite");
+      // access your pending object store
+      const pendingStore = transaction.objectStore("pending");
+      // get all records from store and set to a variable
+      const getAll = pendingStore.getAll();
+    
+
+    }
+    
+    // listen for app coming back online
+    window.addEventListener('online', checkDatabase);
