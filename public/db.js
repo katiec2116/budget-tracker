@@ -9,3 +9,13 @@ request.onupgradeneeded = function (event) {
 };
 
 
+request.onsuccess = function (event) {
+    db = event.target.result;
+    if (navigator.onLine) {
+      checkDatabase();
+    }
+  };
+  
+  request.onerror = function (event) {
+      console.log(event.data.error)
+  
