@@ -38,7 +38,20 @@ request.onsuccess = function (event) {
       // get all records from store and set to a variable
       const getAll = pendingStore.getAll();
     
-
+    
+      getAll.onsuccess = function () {
+        if (getAll.result.length > 0) {
+          fetch('/api/transaction/bulk', {
+            method: 'POST',
+            body: JSON.stringify(getAll.result),
+            headers: {
+              Accept: 'application/json, text/plain, */*',
+              'Content-Type': 'application/json',
+            },
+          })
+            
+        }
+      };
     }
     
     // listen for app coming back online
